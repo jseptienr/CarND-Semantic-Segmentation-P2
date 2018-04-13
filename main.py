@@ -37,9 +37,9 @@ def load_vgg(sess, vgg_path):
     graph = tf.get_default_graph()
     w1 = graph.get_tensor_by_name(vgg_input_tensor_name)
     keep_prob = graph.get_tensor_by_name(vgg_keep_prob_tensor_name)
-    l3 = graph.get_tensor_by_name(vgg_layer3_out)
-    l4 = graph.get_tensor_by_name(vgg_layer4_out)
-    l7 = graph.get_tensor_by_name(vgg_layer7_out)
+    l3 = graph.get_tensor_by_name(vgg_layer3_out_tensor_name)
+    l4 = graph.get_tensor_by_name(vgg_layer4_out_tensor_name)
+    l7 = graph.get_tensor_by_name(vgg_layer7_out_tensor_name)
     return w1, keep_prob, l3, l4, l7
 
 tests.test_load_vgg(load_vgg, tf)
