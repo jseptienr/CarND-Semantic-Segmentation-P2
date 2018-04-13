@@ -58,19 +58,19 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     layer7_1x1_out = tf.layers.conv2d(vgg_layer7_out, num_classes, 1, padding='same', kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     # upsample
-    layer7_upsample_out = tf.layer.conv2d_transpose(layer7_1x1_out, num_classes, 4, 2, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    layer7_upsample_out = tf.layers.conv2d_transpose(layer7_1x1_out, num_classes, 4, 2, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
-    layer4_1x1_out = tf.layer.conv2d(vgg_layer4_out, num_classes, 1, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    layer4_1x1_out = tf.layers.conv2d(vgg_layer4_out, num_classes, 1, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     layer4_skipp_out = tf.add(layer7_upsample_out, layer4_1x1_out)
 
-    layer4_upsample_out = tf.layer.conv2d_transpose(layer4_skipp_out, num_classes, 4, strides=(2, 2), padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    layer4_upsample_out = tf.layers.conv2d_transpose(layer4_skipp_out, num_classes, 4, strides=(2, 2), padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
-    layer3_1x1_out = tf.layer.conv2d(vgg_layer3_out, num_classes, 1, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    layer3_1x1_out = tf.layers.conv2d(vgg_layer3_out, num_classes, 1, padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     layer3_skipp_out = tf.add(layer4_upsample_out, layer3_1x1_out)
 
-    layer3_upsample_out = tf.layer.conv2d_transpose(layer3_skipp_out, num_classes, 16, strides=(8, 8), padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    layer3_upsample_out = tf.layers.conv2d_transpose(layer3_skipp_out, num_classes, 16, strides=(8, 8), padding="same", kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     return layer3_upsample_out
 
