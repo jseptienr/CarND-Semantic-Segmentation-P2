@@ -91,7 +91,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 
     labels = tf.reshape(correct_label, (-1, num_classes))
 
-    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits, labels)tf.reduce_mean(logits, labels)
+    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits, labels)
 
     loss_operation = tf.reduce_mean(cross_entropy)
 
